@@ -1,19 +1,22 @@
 # unit-tests-pytest
 
 ## DESCRIPTION:
-Generate comprehensive, well-documented unit tests for a Python file using pytest framework, following Google docstring style conventions, with configurable line-length constraints and test coverage limits.
+Generate comprehensive, well-documented unit tests for a Python file using pytest framework, following Google docstring style conventions, with configurable line-length constraints and test coverage limits. Test files are organized in a dedicated `tests` folder that mirrors the source directory structure.
 
 ### WORKFLOW:
 This command follows a two-stage process:
 
 1. Stage 1 - Test Generation (this command):
   - Generate comprehensive unit tests with pytest
+  - Create tests in a dedicated `tests` folder at project root
   - Replicate the directory structure from target file within the tests folder
-  - Don't forget to add __init__.py on the tests folders.
+  - Prefix the source root directory with `tests_` (e.g., `src` → `tests_src`, `app` → `tests_app`)
+  - Don't forget to add __init__.py in the test folders
   - Add "test_" prefix to filename only
   - Implement proper database mocking
   - Ensure all test logic is correct and complete
   - Add basic docstrings for context
+
 2. Stage 2 - Documentation Refinement (automatic):
   - Apply /document-python-projects command to the generated test file
   - Enhance all docstrings to professional standards
@@ -95,7 +98,7 @@ CONTEXT: |
     - Integration patterns and expected usage
 
 TASK: |
-    Produce a complete, well-structured unit test module for "{{{ target_file }}}" using pytest, containing no more than {{{ maximum_tests_limit }}} test functions.
+    Produce a complete, well-structured unit test module for "{{{ target_file }}}}" using pytest, containing no more than {{{ maximum_tests_limit }}} test functions.
 
     **Key Objectives:**
     1. Create CONCISE, FOCUSED tests that verify specific behaviors
@@ -104,7 +107,11 @@ TASK: |
     4. Ensure each test has a single, clear purpose
     5. Use descriptive test names that explain what is being tested and expected outcome
     6. Properly mock all database connections and operations to ensure test isolation
-    7. Maintain the same module path structure as the target file with "test_" prefix under the root folder tests, at the same level as the src folder o library root folder.
+    7. Create test files in a dedicated `tests` folder at project root level
+    8. Mirror the source directory structure within the tests folder
+    9. Prefix the source root directory name with `tests_` (e.g., `src/utils/db.py` → `tests/tests_src/utils/test_db.py`)
+    10. Add `__init__.py` files to all test directories to ensure proper Python package structure
+    11. Add "test_" prefix to the module filename only
 
 CONSTRAINTS_AND_REQUIREMENTS:
     - Requirement 1: Implement unit tests for one file at a time, focusing on functions, methods, classes, and other significant language constructs.
@@ -135,8 +142,9 @@ CONSTRAINTS_AND_REQUIREMENTS:
         - Use pytest.monkeypatch, unittest.mock.patch, or pytest fixtures
         - Ensure mocks are specific and verify expected interactions
     
-    - Requirement 7: | -
+    - Requirement 7: |-
         DATABASE MOCKING - CRITICAL REQUIREMENTS:
+        
         **A. Connection Mocking Strategies:**
         - **ALWAYS mock database connections** - NEVER allow tests to connect to real databases
         - Use appropriate mocking based on the database library:
@@ -269,6 +277,28 @@ CONSTRAINTS_AND_REQUIREMENTS:
         - Prioritize tests for complex logic, error handling, and edge cases
         - Avoid trivial tests (e.g., testing that a getter returns a value)
 
+    - Requirement 19: |-
+        TEST FOLDER STRUCTURE - CRITICAL REQUIREMENTS:
+        - **Create a dedicated `tests` folder** at the project root level (same level as src, app, or library root)
+        - **Mirror the source directory structure** within the tests folder
+        - **Prefix the source root directory** with `tests_` inside the tests folder
+        - **Add `__init__.py` files** to all test directories to ensure proper Python package structure
+        - **Add "test_" prefix** to the module filename only
+        - Examples of correct transformations:
+            * `src/utils/database.py` → `tests/tests_src/utils/test_database.py`
+            * `app/services/user_service.py` → `tests/tests_app/services/test_user_service.py`
+            * `mylibrary/core/handlers/auth.py` → `tests/tests_mylibrary/core/handlers/test_auth.py`
+            * `database_manager.py` (root level) → `tests/test_database_manager.py`
+        - **Required `__init__.py` files** for the above examples:
+            * `tests/__init__.py`
+            * `tests/tests_src/__init__.py`
+            * `tests/tests_src/utils/__init__.py`
+            * `tests/tests_app/__init__.py`
+            * `tests/tests_app/services/__init__.py`
+            * `tests/tests_mylibrary/__init__.py`
+            * `tests/tests_mylibrary/core/__init__.py`
+            * `tests/tests_mylibrary/core/handlers/__init__.py`
+
     - Constraint 1: You may reference up to 10 additional files besides the target file for context. Ensure tests are self-contained and clear.
 
     - Constraint 2: Strictly adhere to pytest framework logic and guidelines when implementing test cases. DO NOT COMBINE TESTING FRAMEWORKS. ONLY USE pytest.
@@ -287,7 +317,13 @@ CONSTRAINTS_AND_REQUIREMENTS:
 
     - Constraint 9: "**NEVER allow tests to make actual database connections**. All database interactions must be mocked."
 
-    - Constraint 10: "**The test file path MUST mirror the target file path** with only the filename receiving the "test_" prefix under the root folder tests."
+    - Constraint 10: |-
+        **The test file MUST be created in a dedicated `tests` folder** with the following structure:
+        - Place tests folder at project root level
+        - Mirror source directory structure inside tests folder
+        - Prefix source root directory with `tests_` (e.g., `src` → `tests_src`)
+        - Add `__init__.py` to all test directories
+        - Add "test_" prefix to filename only
 ~~~
 
 ### OUTPUT_FORMAT:
@@ -301,8 +337,8 @@ Provide the following in your response:
     - **Test file path** showing the preserved directory structure with "test_" prefix
 
 2. **Test Module** (complete, ready-to-use):
-    - **File path**: Preserve the exact directory structure of {{{ target_file }}} with "test_" prefix added to filename
-    - Example: If target is `src/utils/database.py`, test file is `src/utils/test_database.py`
+    - **File path**: Follow the tests folder structure rules
+      **Example**: If target is src/utils/database.py, test file is tests/tests_src/utils/test_database.py
     - Include all necessary imports (pytest, unittest.mock, database libraries)
     - Module-level docstring (basic structure only - will be refined in step 4)
     - All test functions with basic docstrings (will be refined in step 4)
@@ -310,13 +346,20 @@ Provide the following in your response:
     - Working, executable pytest code
     - Proper database connection mocking with realistic behavior
 
-3. **Test Coverage Notes**:
+3. **Required __init__.py Files:**
+    - List all __init__.py files that need to be created for the test structure
+    - Example for src/utils/database.py:
+      * tests/__init__.py
+      * tests/tests_src/__init__.py
+      * tests/tests_src/utils/__init__.py
+
+4. **Test Coverage Notes**:
     - Brief list of what scenarios are covered
     - Database-specific scenarios tested (connections, queries, failures)
     - Any assumptions made
     - Any limitations or areas not covered (if applicable)
 
-4. **Documentation Refinement Instruction**:
+5. **Documentation Refinement Instruction**:
     After generating the test module above, apply the /document-python-projects custom command to the generated test file with the following parameters:
     
     ```
@@ -329,19 +372,19 @@ Provide the following in your response:
     ```
     /document-python-projects target_file_name::"src/utils/test_database.py" docstring_style::"Google" examples_in_docstrings::false max_line_length::120 min_line_length::80
     ```
-    
+
     This will ensure:
-       - Professional, standards-compliant documentation following Google docstring style
-       - Proper line-length constraints ({{{ max_line_length }}} max, {{{ min_line_length }}} min)
-       - Comprehensive module-level and function-level docstrings
-       - Consistent terminology and formatting across all test functions
-       - Clear descriptions of test purpose, parameters (fixtures), and expected outcomes
-    
+    - Professional, standards-compliant documentation following Google docstring style
+    - Proper line-length constraints ({{{ max_line_length }}} max, {{{ min_line_length }}} min)
+    - Comprehensive module-level and function-level docstrings
+    - Consistent terminology and formatting across all test functions
+    - Clear descriptions of test purpose, parameters (fixtures), and expected outcomes
+
     **IMPORTANT**: The /document-python-projects command should be applied AFTER the test cases have been:
-       - Fully defined with correct pytest syntax
-       - Validated for logical correctness and completeness
-       - Refined to ensure they follow best practices and cover all required scenarios
-       
+     - Fully defined with correct pytest syntax
+     - Validated for logical correctness and completeness
+     - Refined to ensure they follow best practices and cover all required scenarios
+
     Only once the test logic is finalized should the documentation enhancement be performed.
 
 ### EXAMPLES:
@@ -884,10 +927,10 @@ Before finalizing output, verify:
 ## MODULE PATH STRUCTURE RULES:
 
 ### ✅ CORRECT Path Transformations:
-- `src/utils/database.py` → `tests/utils/test_database.py`
-- `app/services/user_service.py` → `tests/app/services/test_user_service.py`
-- `mylibrary/core/handlers/auth.py` → `tests/mylibrary/core/handlers/test_auth.py`
-- `backend/api/v1/endpoints/users.py` → `tests/backend/api/v1/endpoints/test_users.py`
+- `src/utils/database.py` → `tests/tests_utils/test_database.py`
+- `app/services/user_service.py` → `tests/tests_app/services/test_user_service.py`
+- `mylibrary/core/handlers/auth.py` → `tests/tests_mylibrary/core/handlers/test_auth.py`
+- `backend/api/v1/endpoints/users.py` → `tests/tests_backend/api/v1/endpoints/test_users.py`
 - `database_manager.py` → `tests/test_database_manager.py`
 
 ### ❌ INCORRECT Path Transformations:
@@ -936,4 +979,3 @@ Input:
 ```
 Output: 
 ``tests/test_calculator.py``
-
