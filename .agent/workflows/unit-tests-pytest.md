@@ -86,11 +86,11 @@ After the test logic is finalized, enhance its documentation by results of Stage
 
 ### 5. Quality Checklist
 
-- [x] Test file located in `tests/` mirroring the source structure.
-- [x] Every directory in the test path contains `__init__.py`.
-- [x] `test_` prefix added to filename.
-- [x] DATABASE MOCKING is fully implemented; no real connections possible.
-- [x] Fixtures and parametrization used correctly.
-- [x] Scenarios cover: Nominal, Boundary, Error, and Side Effects.
-- [x] Documentation refinement command (Step 2) applied to generated code.
-- [x] All documentation line lengths within `{{{ max_line_length }}}`.
+- [ ] Test file located in `tests/` mirroring the source structure.
+- [ ] Every directory in the test path contains `__init__.py`.
+- [ ] `test_` prefix added to filename.
+- [ ] DATABASE MOCKING is fully implemented; no real connections possible.
+- [ ] Fixtures and parametrization used correctly.
+- [ ] Scenarios cover: Nominal, Boundary, Error, and Side Effects.
+- [ ] Documentation refinement command (Step 2) applied to generated code.
+- [ ] All documentation line lengths within `{{{ max_line_length }}}`.

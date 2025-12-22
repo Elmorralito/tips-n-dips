@@ -76,7 +76,7 @@ Ensure robustness and traceability across mass documentation:
 
 Ensure the process adheres to these detailed standards:
 
-**Workflow Execution:**
+### 6. Workflow Execution:
 
 1.  **Strict Orchestration**: NEVER attempt to document files directly. **MUST** use the `/document-python-projects` command.
 2.  **Sequential Processing**: Process files strictly one at a time to ensure quality and avoid context overflow.
@@ -86,7 +86,7 @@ Ensure the process adheres to these detailed standards:
 
 **Integrity & Quality:** 6. **No Logic Changes**: Preserve all original code functionality, signatures, and imports. 7. **Relative Pathing**: Use relative paths from the workspace root for all file references in summaries and logs. 8. **Large Workspace Warning**: If >100 files are discovered, warn the user and recommend processing subdirectories separately. 9. **Standard Consistency**: Maintain the chosen `{{{ docstring_style }}}` consistently across the entire workspace.
 
-**QUALITY CHECKLIST:**
+### 7. QUALITY CHECKLIST:
 - [ ] All Python files in workspace discovered correctly
 - [ ] Exclusion patterns applied properly
 - [ ] Files processed in logical order (dependencies first when possible)
@@ -103,7 +103,7 @@ Ensure the process adheres to these detailed standards:
 - [ ] User confirmation requested before processing
 - [ ] Large workspace warnings displayed appropriately
 
-**NOTES:**
+### NOTES:
 - For very large workspaces (>100 files), consider running on subdirectories
 - The command will ask for confirmation before processing
 - Already well-documented files are skipped by default to save time

@@ -182,26 +182,26 @@ def function_name(param1, param2):
 
 ### 5. OUTPUT_FORMAT:
 
-    - Output the fully documented version of the target file, preserving original code and structure.
-    - Place a brief module summary at the very top before any imports or code (module docstring).
-    - Ensure all public methods/functions/classes are documented according to the chosen style.
-    - Include example blocks in docstrings ONLY when {{{ examples_in_docstrings }}} is true, following the style-specific format.
-    - Use clear, consistent English.
-    - Wrap documentation lines to not exceed {{{ max_line_length }}}.
-    - Avoid unnecessary verbosity; prioritize precision and usefulness.
-    - If assumptions were necessary, include a short "Notes" section within the relevant docstring.
-    - When examples are included, ensure they are executable, meaningful, and demonstrate typical use cases.
+- Output the fully documented version of the target file, preserving original code and structure.
+- Place a brief module summary at the very top before any imports or code (module docstring).
+- Ensure all public methods/functions/classes are documented according to the chosen style.
+- Include example blocks in docstrings ONLY when {{{ examples_in_docstrings }}} is true, following the style-specific format.
+- Use clear, consistent English.
+- Wrap documentation lines to not exceed {{{ max_line_length }}}.
+- Avoid unnecessary verbosity; prioritize precision and usefulness.
+- If assumptions were necessary, include a short "Notes" section within the relevant docstring.
+- When examples are included, ensure they are executable, meaningful, and demonstrate typical use cases.
 
 ### 6. QUALITY CHECKLIST:
 
-- Module-level docstring present and concise.
-- All public classes/functions/methods documented.
-- Correct headings and structure for the selected style.
-- Parameters, Returns/Yields, Raises are accurate and complete.
-- Examples section included ONLY when examples_in_docstrings={{{ examples_in_docstrings }}} is true.
-- If examples are included: they are meaningful, executable, and follow the style-specific format.
-- No line exceeds max_line_length={{{ max_line_length }}}; lines are readable and generally meet min_line_length={{{ min_line_length }}} where natural.
-- No per-attribute docstrings inside classes; attributes documented in class docstring if needed.
-- No code changes, only documentation added.
-- Ambiguities labeled as notes; no fabricated specifics.
-- Example blocks (when present) demonstrate typical usage patterns and add value beyond the description.
+- [ ] Module-level docstring present and concise.
+- [ ] All public classes/functions/methods documented.
+- [ ] Correct headings and structure for the selected style.
+- [ ] Parameters, Returns/Yields, Raises are accurate and complete.
+- [ ] Examples section included ONLY when examples_in_docstrings={{{ examples_in_docstrings }}} is true.
+- [ ] If examples are included: they are meaningful, executable, and follow the style-specific format.
+- [ ] No line exceeds max_line_length={{{ max_line_length }}}; lines are readable and generally meet min_line_length={{{ min_line_length }}} where natural.
+- [ ] No per-attribute docstrings inside classes; attributes documented in class docstring if needed.
+- [ ] No code changes, only documentation added.
+- [ ] Ambiguities labeled as notes; no fabricated specifics.
+- [ ] Example blocks (when present) demonstrate typical usage patterns and add value beyond the description.
