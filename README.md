@@ -2,6 +2,35 @@
 
 Repository containing tips and dips gathered along the way.
 
+## Config Migrator Installation (Short)
+
+Download `installer.sh` with `curl`:
+
+```bash
+curl -fsSL "https://raw.githubusercontent.com/<owner>/<repo>/main/config_migrator/src/bash/installer.sh" -o installer.sh
+chmod +x installer.sh
+```
+
+Install dependencies for `config_migrator`:
+
+```bash
+bash config_migrator/src/bash/installer.sh install
+```
+
+Run a backup export:
+
+```bash
+bash config_migrator/src/bash/installer.sh export --output-dir ./backup
+```
+
+Run an import:
+
+```bash
+bash config_migrator/src/bash/installer.sh import --archive-path ./backup/<archive>.tar.gz
+```
+
+Detailed usage is documented in `config_migrator/README.md`.
+
 ## Useful toolkits for AI-Supported IDEs
 
 ### [`Antigravity Agent`](https://antigravity.google/docs/agent)
