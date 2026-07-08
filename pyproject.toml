@@ -14,7 +14,7 @@ python = ">=3.11,<4"
 config-migrator = { path = "./config_migrator", develop = true }
 
 [tool.poetry.group.pre-commit.dependencies]
-black = "^24.4.2"
+black = ">=24.4.2,<27.0.0"
 mypy = "^1.14.1"
 pre-commit = "^3.7.1"
 pylint = "^3.2.6"
